@@ -1,0 +1,60 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-12 col-lg-12">
+      <h1>eat-a-burger</h1>
+    </div>
+  </div>
+</div>
+<div class="jumbotron">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-8 col-md-8 col-lg-8">
+        <h3>house specialties</h3>
+        {{#each burgers}}
+          {{#unless this.devoured}}
+  <div class="row">
+      <div class="col-sm-4 col-md-4 col-lg-4">
+        <div class="house-burger">
+        {{this.burger_name}}
+        </div>
+      </div>
+      <div class="col-sm-8 col-md-8 col-lg-8">
+              <form action="/burgers/{{this.id}}?_method=PUT" method="POST">
+                <button type="submit" class="order-btn">order</button>
+              </form>
+      </div>
+</div>
+          {{/unless}}
+        {{/each}}
+      </div>
+      <div class="col-sm-4 col-md-4 col-lg-4">
+          <h3>your order</h3>
+            {{#each burgers}}
+              {{#if this.devoured}}
+              <div>
+                {{this.burger_name}}
+              </div>
+              {{/if}}
+            {{/each}}
+      </div>
+    </div>
+  </div>
+</div>
+<br><br>
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 col-md-12 col-lg-12">
+        <h2>add a burger</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12 col-md-12 col-lg-12">
+        <form action="/burgers" method="POST">
+          <input type="text" id="name" name="burger_name" placeholder="Your Burger Name">
+          <button type="submit" class="add-btn">add</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</footer>
